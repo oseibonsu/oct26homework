@@ -9,16 +9,22 @@ function startTimer() {
       timer--;
       console.log(timer);
       timerDisplay.textContent = timer;
-      document.getElementById("startQuiz").style.visibility = "hidden";
-     
     }, 1000);
+    document.getElementById("startQuiz").style.visibility = "hidden";
+    addQ();
+    addA();
 
 }
 
-function addQues() {
-    var butt = document.createElement("button");
-    butt.innerText = "shitShow";
-    document.getElementById("gameArea").appendChild(butt);
+function addQ() {
+    var ques = document.createElement("h1");
+    ques.innerText = (questions[0].title);
+    document.getElementById("gameArea").appendChild(ques);
+} 
+function addA() {
+    var answ = document.createElement("button");
+    answ.innerText = (questions[0].choices[0]);
+    document.getElementById("gameArea").appendChild(answ);
 }
 
 
