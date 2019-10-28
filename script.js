@@ -2,7 +2,8 @@ var timer = 0;
 var score = 0;
 var startQuiz = document.getElementById("startQuiz");
 var timerDisplay = document.querySelector("#timerDisplay");
-var pageArr = questions.indexOf[0];
+var currentQuestion = questions[0];
+
 
 function startTimer() {
     timer = 200;
@@ -17,17 +18,19 @@ function startTimer() {
 }
 
 function addQ() {
+    var currentQuestion = questions[currentQuestionIndex];
     var ques = document.createElement("h1");
-    ques.innerText = (questions[0].title);
+    ques.setAttribute("id", "question");
     document.getElementById("gameArea").appendChild(ques);
     var answ = document.createElement("button");
+    answ.setAttribute("id", "choice")
     document.getElementById("gameArea").appendChild(answ);
-    var answ = document.createElement("button");
-    document.getElementById("gameArea").appendChild(answ);
-    var answ = document.createElement("button");
-    document.getElementById("gameArea").appendChild(answ);
-    var answ = document.createElement("button");
-    document.getElementById("gameArea").appendChild(answ);
+    // var answ = document.createElement("button");
+    // document.getElementById("gameArea").appendChild(answ);
+    // var answ = document.createElement("button");
+    // document.getElementById("gameArea").appendChild(answ);
+    // var answ = document.createElement("button");
+    // document.getElementById("gameArea").appendChild(answ);
 }
 
     startQuiz.addEventListener("click", startTimer);
