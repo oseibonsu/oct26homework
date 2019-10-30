@@ -2,9 +2,10 @@ var timer = 0;
 var score = 0;
 var startQuiz = document.getElementById("startQuiz");
 var timerDisplay = document.querySelector("#timerDisplay");
-var questionDisplay = document.querySelector("#question");
-// var currentQuestion = questions[0];
+var currentQuestion = questions[0];
 
+var indexOfCurrentQuestion = 0;
+var interval;
 
 function startTimer() {
     timer = 200;
@@ -19,23 +20,44 @@ function startTimer() {
 }
 
 function addQ() {
-    for (var i = 0; i < questions.length; i++) {
-        var ques = questions[i];
-        var button = document.createElement("button");
-        button.textContent = ques;
-        gameArea.appendChild(button);
+    var currentQuestion = questions;
+    console.log('QUESTIONS', questions)
+    var ques = document.createElement("h1");
+    ques.innerText = questions[indexOfCurrentQuestion].title;
+    document.getElementById("gameArea").appendChild(ques);
+    ques.setAttribute("id", "question");
+    addAns();
+}
+
+function addAns() {
+    var ans = document.createElement("div");
+    ans.setAttribute("id", "answers");
+    document.getElementById("gameArea").appendChild(ans);
+    for (var i = 0; i < questions[indexOfCurrentQuestion].choices.length; i++) {
+        var choice = questions[indexOfCurrentQuestion].choices[i];
+        var h1 = document.createElement("h1");
+        h1.textContent = choice;
+        document.getElementById("answers").appendChild(h1);
     }
 }
 
+document.addEventListener('click', function(event){
+    if(event.target.matches("#answers h1")){
+        
+        if(event.target.innerText == questions[0].answer){
+            alert('correct')
+        }else{
+            alert('incorrect');
+        }
+        indexOfCurrentQuestion++;
+        document.getElementById("gameArea").innerHTML = "";
+        addQ()
+    }
+});
 
-// var currentQuestion = questions;
-// var ques = document.createElement("h1");
-// document.getElementById("gameArea").appendChild(ques);
-// ques.setAttribute("id", "question");
 // currentQuestion.choices.forEach(function(choices) {
 //     choiceNode = document.createElement("button");
 //     choiceNode.setAttribute("class", choice)
-// })
 
 // var currentQuestion = questions[currentQuestionIndex];
 // var ques = document.createElement("h1");
