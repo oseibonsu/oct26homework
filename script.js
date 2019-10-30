@@ -1,5 +1,5 @@
 var timer = 0;
-var score = 0;
+var score = timer * 100;
 var startQuiz = document.getElementById("startQuiz");
 var timerDisplay = document.querySelector("#timerDisplay");
 var currentQuestion = questions[0];
@@ -41,14 +41,13 @@ function addAns() {
     }
 }
 
-document.addEventListener('click', function(event){
-    if(event.target.matches("#answers button")){
-        
-        if(event.target.innerText == currentQuestion.answer){
+document.addEventListener('click', function(event) {
+    if (event.target.matches("#answers button")) {
+
+        if (event.target.innerText === questions[indexOfCurrentQuestion].answer) {
             alert('correct')
             indexOfCurrentQuestion++;
-            
-        }else{
+        } else {
             alert('incorrect');
             timer--;
             timer--;
@@ -60,11 +59,11 @@ document.addEventListener('click', function(event){
             timer--;
             timer--;
             timer--;
-            return;
+
         }
-   
+
         document.getElementById("gameArea").innerHTML = "";
-        
+
         addQ()
     }
 });
