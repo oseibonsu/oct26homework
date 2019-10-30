@@ -14,7 +14,7 @@ function startTimer() {
         console.log(timer);
         timerDisplay.textContent = timer;
     }, 1000);
-    document.getElementById("startQuiz").style.visibility = "hidden";
+    document.getElementById("gameArea").innerHTML = "";
     addQ();
 
 }
@@ -35,43 +35,38 @@ function addAns() {
     document.getElementById("gameArea").appendChild(ans);
     for (var i = 0; i < questions[indexOfCurrentQuestion].choices.length; i++) {
         var choice = questions[indexOfCurrentQuestion].choices[i];
-        var h1 = document.createElement("h1");
-        h1.textContent = choice;
-        document.getElementById("answers").appendChild(h1);
+        var button = document.createElement("button");
+        button.textContent = choice;
+        document.getElementById("answers").appendChild(button);
     }
 }
 
 document.addEventListener('click', function(event){
-    if(event.target.matches("#answers h1")){
+    if(event.target.matches("#answers button")){
         
-        if(event.target.innerText == questions[0].answer){
+        if(event.target.innerText == currentQuestion.answer){
             alert('correct')
+            indexOfCurrentQuestion++;
+            
         }else{
             alert('incorrect');
+            timer--;
+            timer--;
+            timer--;
+            timer--;
+            timer--;
+            timer--;
+            timer--;
+            timer--;
+            timer--;
+            timer--;
+            return;
         }
-        indexOfCurrentQuestion++;
+   
         document.getElementById("gameArea").innerHTML = "";
+        
         addQ()
     }
 });
-
-// currentQuestion.choices.forEach(function(choices) {
-//     choiceNode = document.createElement("button");
-//     choiceNode.setAttribute("class", choice)
-
-// var currentQuestion = questions[currentQuestionIndex];
-// var ques = document.createElement("h1");
-// ques.setAttribute("id", "question");
-// document.getElementById("gameArea").appendChild(ques);
-// var answ = document.createElement("button");
-// answ.setAttribute("id", "choice")
-// document.getElementById("gameArea").appendChild(answ);
-// var answ = document.createElement("button");
-// document.getElementById("gameArea").appendChild(answ);
-// var answ = document.createElement("button");
-// document.getElementById("gameArea").appendChild(answ);
-// var answ = document.createElement("button");
-// document.getElementById("gameArea").appendChild(answ);
-
 
 startQuiz.addEventListener("click", startTimer);
